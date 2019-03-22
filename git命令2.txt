@@ -1,0 +1,45 @@
+1，回退版本
+	git reset --hard HEAD^ //HEAD表示当前版本 ^表示上一个版本 HEAD^^上上一个版本，
+ 	HEAD~100表示上100个版本
+	git reset --hard commit_id
+2, git reflog 查看命令历史
+
+3，git diff HEAD -- <filename> //可以查看工作区与版本库里面最新的区别
+
+4，git checkout -- <filename> //(两种情况：1，修改后还没有放到暂存区，撤销后就回到和版本库一模一样的状态；
+	2：已经添加到暂存区，又作了修改，撤销后就回到添加到暂存区后的状态)，3：如果是误删除了本地的文件，
+	此时版本库里还有
+	可以用git checkout -- <filename> 还原。所以，无论工作区是修改还是删除都可以通过此方法还原。
+
+5,  git reset HEAD <file> //可以把暂存区的修改撤销掉（已经提交到暂存区的文件可以重新放回工作区）
+
+6. 远程库操作
+	git romote add origin <git地址> 关联一个远程库
+	git push -u origin master（推送到master分支）	第一次推送加-u参数，此后不需要加-u参数
+	git push origin test 把分支推送到远程就是在远程新创建了一个分支
+	git push origin --delete branchName //删除远程分支
+
+7.分支管理
+	1.git checkout -b  <分支名称>	//创建并且切换到该分支
+	2.git checkout <分支名称>	//切换分支
+	3.git branch <分支名称>	//创建分支 创建远程分支（origin/<分支名称>）
+	4.git merge/rebase <分支名称>//合并分支
+	5.git branch -d <分支名称>	//删除分支
+	6.git branch		//查看分支
+	7.git branch -D <分知名称>	//如果分支上的东西没有被合并过就需要通过-D强行删除分支
+	8. git branch --set-upstream-to=origin/dev dev 或者 git branch -u origin/分支名   //指定本地dev与远程origin/dev分支的链接
+	9.git branck -a //查看有哪些分支（包含远程分支）
+8,“储藏工作现场”，
+	*git stash 可以把修改后的存储起来，这个时候工作区相当于 干净的。
+	*git stash list  查看保存起来的工作区
+	*git stash apply 可以恢复保存起来的工作现场，但是恢复后stash内容并不删除，
+	还需要用git stash drop，另外一种方式用git stash pop，恢复时同时删除stash内容，
+	也可以多次使用git stash 恢复的时候用git stash list 查看，然后恢复指定的stash,用命令：
+	git stash apply stash@{0}
+9，多人协作开发
+	1.在本地创建与远程分支一样的分支 git checkout -b <分支名称> origin/<分支名称>
+	2.建立本地与远程分支关联 git branch --set-upstream <分支名称> origin/<分支名称>
+	3.从远程抓取分支，使用git pull，如果有冲突，要先处理冲突。
+	4.从本地推送分支，使用git push origin branch-name，如果推送失败，先用git pull抓取远程的新提交；。
+   	5. 查看远程库信息，使用git remote -v；
+

@@ -1,0 +1,52 @@
+git 基本操作
+1.创建仓库：
+	* git init
+	* git clone
+	* git config
+2,保存修改
+	*git add
+	*git commit
+3,查看仓库
+	*git status
+	*git log --oneline
+4,撤销修改
+	1，查看之前的commit
+		*git checkout <commit> <file>
+		*git checkout <commit>
+		*git checkout <branch>
+	2,  撤销公共修改
+		*git revert <commit>
+	3，撤销本地修改
+		*git reset
+		*git clean
+5,重写git历史纪录
+	1，git commit -amend
+	2，git rebase
+	3，git reflog
+6,git协作开发
+	*git remote
+	*git featch
+	*git pull
+	*git push
+7，提交到远端仓库
+	*git push origin master(分支) //可以把master改成你想要推送的分支
+	
+8，分支
+	*git checkout -b feature_x	//创建一个feature_x分支，并切换过去
+	*git checkout master 	//切换回主分支
+	*git branch -d feature_x	//删掉分支
+	*git push origin <branch>	//将分支推送的远程 否则该分支别人是看不到的
+9，更新与合并
+	*git pull	//更新
+	*git merge <branch>	//合并其他分支到当分支（如果冲突需要手动合并冲突，然后git add <filename>）
+	*git diff <source_branch> <target_branch>//预览差异
+	*git log  //获取本地仓库历史记录
+	*git log  --author=bob	//只看一个人的提交记录
+	*git log  --pretty=oneline	//压缩后每一条记录只占一行的输出
+	*git log  ---name-status	//看看哪些文件改变了
+10，替换本地改动
+	*git checkout --<filename>	//此命令会使用HEAD中最新的内容替换掉工作目录的文件（已经添加到暂存区的改动以及新文件都不会收影响）（把文件从暂存区复制到工作目录，用来丢弃本地修改）
+	*git checkout HEAD	 --files 回滚到复制最后一次提交
+	假如你想丢弃你在本地的所有改动与提交，可以到服务器上获取最新的版本历史，并将你的本地主分支指向它：
+	*git featch origin
+	*git reset --hard origin/master //(git reset -- files 用来撤销最后一次git add files，也可以用git reset 撤销所有暂存区域的文件)
