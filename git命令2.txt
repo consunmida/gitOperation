@@ -13,6 +13,10 @@
 
 5,  git reset HEAD <file> //可以把暂存区的修改撤销掉（已经提交到暂存区的文件可以重新放回工作区）
 
+     git revert commitId // 撤销这次提交（不是merge的提交）
+     git revert commitId  -m 1或者2 （因为是两个commit（commit1，commit2） merge产生，1代表撤销到commit1代表的commit，最终的结果就是commit1提交后一致，2代表撤销到commit2代表的commit）
+     revert撤销但是HEAD是向前的，撤销到的某次commit后的提交会保留，reset 撤销到某次commit，这个commit后的所有提交都会丢弃 。
+	
 6. 远程库操作
 	git romote add origin <git地址> 关联一个远程库
 	git push -u origin master（推送到master分支）	第一次推送加-u参数，此后不需要加-u参数
