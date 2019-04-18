@@ -40,6 +40,9 @@ git branch --set-upstream-to=origin/remote_branch  your_branch  本地关联远程分支
 
 命令git tag -d <tagname>可以删除一个本地标签；
 
+git tag -a 版本名 -m 描述 <commitId>
+
+git push origin -tagName
 命令git push origin :refs/tags/<tagname>可以删除一个远程标签
 
 git config --global credential.helper store 记住用户名密码
