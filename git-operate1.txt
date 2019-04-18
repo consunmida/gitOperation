@@ -3,6 +3,10 @@ git log --graph --pretty=oneline --abbrev-commit
 
 git log --graph 可以看到分支合并图
 
+git log fileName //查看某个文件的提交历史
+
+git log -p fimeName // 查看文件每次提交的差异
+
 git commit --amend 修改最后一次提交注释信息   后git push -f（谨慎）
 
 如果修改之的第三次提交的信息可以这样：git rebase -i HEAD~3 然后
