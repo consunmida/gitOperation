@@ -36,6 +36,7 @@ git 基本操作
 	*git checkout master 	//切换回主分支
 	*git branch -d feature_x	//删掉分支
 	*git push origin <branch>	//将分支推送的远程 否则该分支别人是看不到的
+	*git branch -b feature_x  commit_id	//根据某次commit创建一个分支
 9，更新与合并
 	*git pull	//更新
 	*git merge <branch>	//合并其他分支到当分支（如果冲突需要手动合并冲突，然后git add <filename>）
