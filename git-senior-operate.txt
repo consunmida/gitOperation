@@ -1,0 +1,66 @@
+1.修改最近的提交
+git commit --amend
+—-amend 允许你把阶段性更改（例如添加被遗忘的文件）附加到上一次提交。添加 --no-edit 
+将会修改最后的提交但不更改它的提交消息。如果没有更改，--amend 将允许你重新输入最后的提交
+
+2.以交互方式添加文件的选定部分
+git add -p
+-p (或 —patch) 允许以交互的形式选择每个跟踪文件中要提交的部分。这样每次提交仅包含相关的更改
+
+3.以交互方式隐藏文件的选定部分
+git stash -p
+与 git-add 类似，你可以使用 --patch 选项以交互方式选择每个要跟踪文件的部分。
+
+4.隐藏未跟踪的文件
+git stash -u
+在默认情况下，存储时不包括那些未跟踪的文件。为了改变这种行为并包括那些文件，你需要使用 -u 参数。
+还有一个 -a（-all）参数可以存储所有未跟踪和忽略的文件，这种操作通常能是你不需要的。
+
+5.以交互方式还原文件的选定部分
+git checkout -p
+
+6.切换到上一个分支
+git checkout -
+此命令使你可以快速切换到先前签出的分支。通常 - 是上一个分支的别名。它也可以与其他命令一起使用。
+
+7.恢复所有本地更改
+git checkout .
+如果你确定可以放弃本地所有更改，则可以用 . 一次完成。但是始终使用 checkout --patch 是一个好习惯。
+
+8.显示更改
+git diff --staged
+该命令显示所有已阶段化的更改（已添加到索引中的更改），而与 git diff 相比，后者仅显示工作目录中的
+更改（索引中没有更改）。
+
+9.在本地重命名分支
+git branch -m old-name new-name
+如果要重命名当前签出的分支，可以将命令缩短为以下形式：
+git branch -m new-name
+
+10.远程重命名分支
+为了远程重命名分支，在本地重命名分支后，你需要先远程删除该分支，然后再次推送重命名的分支。
+git push origin :old-name
+git push origin new-name
+
+11.一次打开所有有冲突的文件
+重新设置基准可能会导致冲突，以下命令将打开需要你解决这些冲突的所有文件。
+
+git diff --name-only --diff-filter=U | uniq | xargs $EDITOR
+
+
+12.发生了什么变化
+git whatchanged --since=‘2 weeks ago’
+该命令将显示一个日志，其中包含最近两周内每次提交所引入的差异。
+
+13.从上一次提交中删除文件
+你可以通过结合 rm 和 commit --amend 命令来从上一次提交中快速删除误提交的文件：
+git rm --cached <file-to-remove>
+git commit --amend
+
+14.查找分支
+git branch --contains <commit>
+该命令将显示包含特定提交的所有分支。
+
+15.在本地优化存储库
+git gc --prune=now --aggressive
+
